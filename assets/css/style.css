@@ -212,3 +212,141 @@ h1, h2, h3, .logo, .logo-text { font-family: 'Space Grotesk', system-ui, sans-se
     padding-bottom: 4rem;
   }
 }
+/* ============================================================
+   SITE 2 — MODERN MOTION LAYER
+   Spring, energetic, magnetic. Bento pop-in.
+   ============================================================ */
+
+[data-pop] {
+  opacity: 0;
+  transform: translateY(26px) scale(0.98);
+  transition: opacity 0.7s cubic-bezier(0.34, 1.56, 0.64, 1),
+              transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+[data-pop].is-visible { opacity: 1; transform: none; }
+
+[data-scale-in] {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 0.8s cubic-bezier(0.34, 1.56, 0.64, 1),
+              transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+[data-scale-in].is-visible { opacity: 1; transform: scale(1); }
+
+/* HERO — springy entrance */
+.hero-badge {
+  opacity: 0;
+  transform: translateY(-12px) scale(0.9);
+  transition: opacity 0.6s cubic-bezier(0.34, 1.56, 0.64, 1),
+              transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.hero-badge.is-visible { opacity: 1; transform: none; }
+
+#hero-title .word-wrap {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+  padding-bottom: 0.08em;
+}
+#hero-title .word {
+  display: inline-block;
+  transform: translateY(105%) rotate(4deg);
+  transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+#hero-title .word.is-visible { transform: translateY(0) rotate(0); }
+
+#hero-sub {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s,
+              transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s;
+}
+#hero-sub.is-visible { opacity: 1; transform: none; }
+
+.hero-actions .btn {
+  opacity: 0;
+  transform: translateY(16px) scale(0.94);
+  transition: opacity 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.35s,
+              transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.35s;
+}
+.hero-actions .btn.is-visible { opacity: 1; transform: none; }
+
+/* Magnetic buttons — smooth return */
+[data-magnetic] {
+  will-change: transform;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+              background 0.3s ease, box-shadow 0.3s ease;
+}
+[data-magnetic]:hover { transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1); }
+
+/* Service cards — bento pop-in with 3D tilt */
+.service-card {
+  opacity: 0;
+  transform: translateY(30px) scale(0.94);
+  transition: opacity 0.7s cubic-bezier(0.34, 1.56, 0.64, 1),
+              transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1),
+              border-color 0.3s ease, box-shadow 0.4s ease;
+}
+.service-card.is-visible { opacity: 1; transform: translateY(0) scale(1); }
+
+/* Gallery — staggered slide-in */
+.gallery-item {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.65s cubic-bezier(0.34, 1.56, 0.64, 1),
+              transform 0.65s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.gallery-item.is-visible { opacity: 1; transform: translateY(0); }
+
+/* Testimonial cards — alternating side entry */
+.testi-card {
+  opacity: 0;
+  transform: translateY(24px) rotate(-1deg);
+  transition: opacity 0.7s cubic-bezier(0.34, 1.56, 0.64, 1),
+              transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.testi-card.is-visible { opacity: 1; transform: none; }
+
+/* Floating navbar — bouncy drop */
+.header--float {
+  opacity: 0;
+  transform: translateY(-24px) scale(0.96);
+  transition: opacity 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 0.15s,
+              transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 0.15s;
+}
+.header--float.is-loaded { opacity: 1; transform: none; }
+
+/* Contact form field stagger */
+.contact-form input,
+.contact-form select,
+.contact-form textarea {
+  opacity: 0;
+  transform: translateX(-14px);
+  transition: opacity 0.55s cubic-bezier(0.34, 1.56, 0.64, 1),
+              transform 0.55s cubic-bezier(0.34, 1.56, 0.64, 1),
+              border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.contact-form.is-visible input,
+.contact-form.is-visible select,
+.contact-form.is-visible textarea { opacity: 1; transform: none; }
+.contact-form.is-visible input:nth-child(1) { transition-delay: 0.05s; }
+.contact-form.is-visible input:nth-child(2) { transition-delay: 0.12s; }
+.contact-form.is-visible select { transition-delay: 0.19s; }
+.contact-form.is-visible textarea { transition-delay: 0.26s; }
+.contact-form.is-visible button { transition-delay: 0.33s; }
+
+/* Nav pill underline */
+.nav--pill a { transition: color 0.3s ease, background 0.35s cubic-bezier(0.34, 1.56, 0.64, 1); }
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  [data-pop], [data-scale-in], .hero-badge,
+  #hero-title .word, #hero-sub, .hero-actions .btn,
+  .service-card, .gallery-item, .testi-card,
+  .header--float, .contact-form input, .contact-form select,
+  .contact-form textarea {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
