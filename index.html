@@ -29,7 +29,6 @@
   </div>
 
   <main>
-    <!-- HERO -->
     <section class="hero" id="hero">
       <div class="hero-bg" id="hero-bg"></div>
       <div class="container hero-content">
@@ -43,7 +42,6 @@
       </div>
     </section>
 
-    <!-- HİZMETLER: Bento Grid -->
     <section id="hizmetler" class="services">
       <div class="container">
         <div class="section-header">
@@ -54,7 +52,6 @@
       </div>
     </section>
 
-    <!-- GALERİ: Sonsuz Marquee -->
     <section id="galeri" class="gallery">
       <div class="container">
         <div class="section-header">
@@ -67,9 +64,8 @@
       </div>
     </section>
 
-    <!-- HAKKIMIZDA: Sticky Görsel -->
     <section id="hakkimizda" class="about">
-      <div class="container about-sticky">
+      <div class="about-split">
         <div class="about-visual">
           <img id="about-img" src="" alt="Studio" class="about-img">
         </div>
@@ -82,20 +78,29 @@
       </div>
     </section>
 
-    <!-- YORUMLAR: Avatar Kartları + Form -->
     <section id="yorumlar" class="testimonials">
       <div class="container">
         <div class="section-header">
           <span class="section-label">Yorumlar</span>
           <h2>Onlar ne diyor?</h2>
         </div>
-        <div class="avatar-stack" id="testi-grid"></div>
+        <div class="testi-grid" id="testi-grid"></div>
 
         <div class="review-panel">
           <h3>Deneyimini Paylaş</h3>
           <form class="review-form" id="review-form">
             <input type="text" name="name" placeholder="Adın" required maxlength="40">
-            <input type="number" name="rating" min="1" max="5" value="5" placeholder="Puan (1-5)" required>
+            <div class="star-picker-wrap">
+              <span class="star-picker-label">Puanın:</span>
+              <div class="star-picker" data-rating="5">
+                <button type="button" class="star-btn" data-v="1" aria-label="1 yıldız"></button>
+                <button type="button" class="star-btn" data-v="2" aria-label="2 yıldız"></button>
+                <button type="button" class="star-btn" data-v="3" aria-label="3 yıldız"></button>
+                <button type="button" class="star-btn" data-v="4" aria-label="4 yıldız"></button>
+                <button type="button" class="star-btn" data-v="5" aria-label="5 yıldız"></button>
+              </div>
+              <input type="hidden" name="rating" value="5">
+            </div>
             <textarea name="text" placeholder="Yorumun..." rows="3" required maxlength="300"></textarea>
             <button type="submit" class="btn btn-primary" data-magnetic>Gönder</button>
           </form>
@@ -103,7 +108,6 @@
       </div>
     </section>
 
-    <!-- İLETİŞİM: Panel -->
     <section id="iletisim" class="contact">
       <div class="container">
         <div class="contact-panel">

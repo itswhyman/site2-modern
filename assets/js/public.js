@@ -1,32 +1,27 @@
 (function () {
   const cfg = Storage.load();
-  const root = document.documentElement;
-  Object.keys(cfg.colors || {}).forEach(k => root.style.setProperty('--' + k.replace(/([A-Z])/g, '-$1').toLowerCase(), cfg.colors[k]));
+  Object.keys(cfg.colors || {}).forEach(k => document.documentElement.style.setProperty('--' + k.replace(/([A-Z])/g, '-$1').toLowerCase(), cfg.colors[k]));
 
   document.title = cfg.seo?.title || cfg.business.name;
   const md = document.querySelector('meta[name="description"]');
   if (md) md.content = cfg.seo?.description || cfg.business.tagline;
 
   const logoEl = document.getElementById('logo');
-  if (cfg.business.logoImage) logoEl.innerHTML = `<img src="${cfg.business.logoImage}" alt="${cfg.business.name}" style="height:36px">`;
+  if (cfg.business.logoImage) logoEl.innerHTML = `<img src="${cfg.business.logoImage}" alt="${cfg.business.name}">`;
   else logoEl.textContent = cfg.business.logoText || cfg.business.name;
   document.getElementById('footer-logo').textContent = cfg.business.logoText || cfg.business.name;
   document.getElementById('footer-tagline').textContent = cfg.business.tagline;
   document.getElementById('footer-copy').textContent = `© ${new Date().getFullYear()} ${cfg.business.name}. Tüm hakları saklıdır.`;
 
-  // Hero
   document.getElementById('hero-title').textContent = cfg.hero.title;
   document.getElementById('hero-sub').textContent = cfg.hero.subtitle;
   const heroCta = document.getElementById('hero-cta');
   heroCta.textContent = cfg.hero.ctaText;
   heroCta.href = cfg.hero.ctaLink || '#iletisim';
   const heroBg = document.getElementById('hero-bg');
-  if (cfg.hero.image) {
-    heroBg.style.backgroundImage = `url(${cfg.hero.image})`;
-    heroBg.style.opacity = 1 - (cfg.hero.overlay || 0.3);
-  }
+  if (cfg.hero.image) { heroBg.style.backgroundImage = `url(${cfg.hero.image})`; heroBg.style.opacity = 1 - (cfg.hero.overlay || 0.3); }
 
-  // Services bento
+  // Services
   const servicesGrid = document.getElementById('services-grid');
   const formServices = document.getElementById('form-services');
   formServices.innerHTML = '<option value="">Hizmet seçin</option>';
@@ -45,7 +40,7 @@
     formServices.innerHTML += `<option>${esc(s.title)}</option>`;
   });
 
-  // Gallery marquee — duplicate items for infinite scroll
+  // Gallery — marquee 2x duplicate
   const galleryGrid = document.getElementById('gallery-grid');
   const buildItem = g => `<figure class="marquee-item"><img src="${g.url}" alt="${esc(g.alt)}" loading="lazy"></figure>`;
   (cfg.gallery || []).forEach(g => galleryGrid.innerHTML += buildItem(g));
@@ -58,18 +53,20 @@
   (cfg.about.features || []).forEach(f => feats.innerHTML += `<li>${esc(f)}</li>`);
   if (cfg.about.image) document.getElementById('about-img').src = cfg.about.image;
 
-  // Testimonials
+  // Testimonials — grid cards
   const testiGrid = document.getElementById('testi-grid');
   (cfg.testimonials || []).filter(t => t.approved !== false).forEach(t => {
     const initials = (t.name || '?').trim().split(' ').map(p => p[0]).slice(0,2).join('').toUpperCase();
     testiGrid.innerHTML += `
-      <article class="avatar-card">
-        <div class="avatar-chip">${initials}</div>
-        <div class="avatar-body">
-          <div class="stars">${'<span class="star"></span>'.repeat(t.rating || 5)}</div>
-          <p>“${esc(t.text)}”</p>
-          <cite>— ${esc(t.name)}</cite>
+      <article class="testi-card">
+        <div class="testi-head">
+          <div class="testi-chip">${initials}</div>
+          <div class="testi-info">
+            <strong>${esc(t.name)}</strong>
+            <div class="stars">${'<span class="star"></span>'.repeat(t.rating || 5)}</div>
+          </div>
         </div>
+        <p>“${esc(t.text)}”</p>
       </article>`;
   });
 
@@ -93,6 +90,25 @@
     e.target.reset();
   });
 
+  // Star picker
+  document.querySelectorAll('.star-picker').forEach(widget => {
+    const btns = widget.querySelectorAll('.star-btn');
+    const hidden = widget.closest('form').querySelector('input[name="rating"]');
+    let current = parseInt(widget.dataset.rating) || 5;
+    function paint(v) { btns.forEach((b, i) => b.classList.toggle('filled', i < v)); }
+    paint(current);
+    btns.forEach((btn, i) => {
+      btn.addEventListener('mouseenter', () => paint(i + 1));
+      btn.addEventListener('mouseleave', () => paint(current));
+      btn.addEventListener('click', () => {
+        current = i + 1;
+        widget.dataset.rating = current;
+        if (hidden) hidden.value = current;
+        paint(current);
+      });
+    });
+  });
+
   // Review form
   document.getElementById('review-form').addEventListener('submit', e => {
     e.preventDefault();
@@ -111,18 +127,19 @@
     if (Storage.save(fresh)) {
       alert('Yorumunuz alındı! Yönetici onayından sonra yayınlanacak.');
       f.reset();
+      f.querySelectorAll('.star-btn').forEach((b, i) => b.classList.toggle('filled', i < 5));
+      f.querySelector('input[name="rating"]').value = 5;
+      f.querySelector('.star-picker').dataset.rating = 5;
     }
   });
 
-  // ---- Animations ----
+  // Animations
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const isMobile = window.matchMedia('(max-width: 860px)').matches;
 
-  // Hero — word split
   const title = document.getElementById('hero-title');
   if (title && !title.querySelector('.word')) {
-    const words = title.textContent.trim().split(/\s+/);
-    title.innerHTML = words.map(w => `<span class="word-wrap"><span class="word">${w}</span></span>`).join(' ');
+    title.innerHTML = title.textContent.trim().split(/\s+/).map(w => `<span class="word-wrap"><span class="word">${w}</span></span>`).join(' ');
   }
   requestAnimationFrame(() => document.getElementById('header')?.classList.add('is-loaded'));
   setTimeout(() => {
@@ -133,7 +150,6 @@
     setTimeout(() => document.querySelectorAll('.hero-actions .btn').forEach(b => b.classList.add('is-visible')), t + 260);
   }, 100);
 
-  // Magnetic buttons
   if (!reduce && !isMobile) {
     document.querySelectorAll('[data-magnetic]').forEach(btn => {
       btn.addEventListener('mousemove', e => {
@@ -144,21 +160,24 @@
     });
   }
 
-  // Scroll reveals
   if (!reduce) {
     const io = new IntersectionObserver((entries) => {
       entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); } });
-    }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
-    document.querySelectorAll('.service-card').forEach((el, i) => { el.style.transitionDelay = (i*90)+'ms'; io.observe(el); });
-    document.querySelectorAll('.avatar-card').forEach((el, i) => { el.style.transitionDelay = (i*100)+'ms'; io.observe(el); });
+    }, { threshold: 0.08, rootMargin: '0px 0px 5% 0px' });
+    document.querySelectorAll('.service-card').forEach((el, i) => { el.style.transitionDelay = (i*80)+'ms'; io.observe(el); });
+    document.querySelectorAll('.testi-card').forEach((el, i) => { el.style.transitionDelay = (i*90)+'ms'; io.observe(el); });
     const aboutImg = document.getElementById('about-img'); if (aboutImg) io.observe(aboutImg);
     const aboutFeats = document.getElementById('about-features'); if (aboutFeats) io.observe(aboutFeats);
-    const contactForm = document.getElementById('contact-form');
-    if (contactForm) {
-      const fio = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) { contactForm.classList.add('is-visible'); fio.disconnect(); } }), { threshold: 0.25 });
-      fio.observe(contactForm);
+    const form = document.getElementById('contact-form');
+    if (form) {
+      const fio = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) { form.classList.add('is-visible'); fio.disconnect(); } }), { threshold: 0.2 });
+      fio.observe(form);
     }
-    // Hero parallax
+    setTimeout(() => {
+      document.querySelectorAll('.service-card, .testi-card, .about-img, .about-features').forEach(el => el.classList.add('is-visible'));
+      document.getElementById('contact-form')?.classList.add('is-visible');
+    }, 2500);
+
     if (!isMobile) {
       const bg = document.getElementById('hero-bg');
       let ticking = false;
@@ -173,7 +192,7 @@
       }, { passive: true });
     }
   } else {
-    document.querySelectorAll('.service-card, .avatar-card, .about-img, .about-features').forEach(el => el.classList.add('is-visible'));
+    document.querySelectorAll('.service-card, .testi-card, .about-img, .about-features').forEach(el => el.classList.add('is-visible'));
     document.getElementById('contact-form')?.classList.add('is-visible');
   }
 

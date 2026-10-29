@@ -19,14 +19,14 @@ window.SITE_DEFAULTS = {
     title: 'Güzelliğini Yeniden Tanımla',
     subtitle: 'Son teknoloji cihazlar ve yaratıcı ekibimizle kendine özel bir dönüşüm yaşa.',
     ctaText: 'Hemen Randevu', ctaLink: '#iletisim',
-    image: 'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=1600&q=80',
-    overlay: 0.4
+    image: 'https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=1600&q=80',
+    overlay: 0.35
   },
   about: {
     title: 'Aura farkı',
     text: 'Sadece hizmet değil, deneyim satıyoruz. Her randevuda hijyen, şeffaflık ve sonuç odaklı yaklaşım.',
     features: ['Sterilizasyon garantisi', 'Şeffaf fiyatlandırma', 'Sonuç odaklı protokoller', 'Trend takipçisi ekip'],
-    image: 'https://images.unsplash.com/photo-1633681926035-ec1ac984418a?w=1000&q=80'
+    image: 'https://images.unsplash.com/photo-1633681926035-ec1ac984418a?w=1400&q=80'
   },
   services: [
     { id: 's1', icon: '01', title: 'Lazer Epilasyon', desc: 'Alexandrite & Diode teknolojisi ile kalıcı sonuçlar.', price: '1.200 ₺', duration: '45 dk', visible: true },
@@ -39,10 +39,10 @@ window.SITE_DEFAULTS = {
   gallery: [
     { id: 'g1', url: 'https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?w=900&q=80', alt: 'Studio' },
     { id: 'g2', url: 'https://images.unsplash.com/photo-1560066984-138dadb4c035?w=900&q=80', alt: 'Bakım' },
-    { id: 'g3', url: 'https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=900&q=80', alt: 'Makyaj' },
-    { id: 'g4', url: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=900&q=80', alt: 'Cilt' },
-    { id: 'g5', url: 'https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?w=900&q=80', alt: 'Spa' },
-    { id: 'g6', url: 'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=900&q=80', alt: 'Detay' }
+    { id: 'g3', url: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=900&q=80', alt: 'Makyaj' },
+    { id: 'g4', url: 'https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?w=900&q=80', alt: 'Cilt' },
+    { id: 'g5', url: 'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=900&q=80', alt: 'Spa' },
+    { id: 'g6', url: 'https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=900&q=80', alt: 'Detay' }
   ],
   testimonials: [
     { id: 't1', text: 'Lazer sonrası sonuçlar inanılmaz. Ekip çok profesyonel.', name: 'Ayşe Y.', rating: 5, approved: true },
