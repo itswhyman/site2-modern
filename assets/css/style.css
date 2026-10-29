@@ -9,20 +9,44 @@ body {
 h1, h2, h3, .logo, .logo-text { font-family: 'Space Grotesk', system-ui, sans-serif; font-weight: 600; }
 .container { width: min(1140px, 92%); margin-inline: auto; }
 
-.header {
-  position: sticky; top: 0; z-index: 100;
-  background: rgba(26,15,28,0.9); backdrop-filter: blur(14px);
-  border-bottom: 1px solid rgba(232,74,127,0.2);
+/* SITE 2: Floating centered navbar – inset from sides, not full-bleed sticky */
+.nav-float-wrap {
+  position: fixed;
+  top: 1.25rem;
+  left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
 }
-.header-inner { display: flex; align-items: center; justify-content: space-between; height: 68px; }
+.header--float {
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  width: min(920px, 90%);
+  padding: 0.65rem 1.25rem;
+  background: rgba(36, 21, 40, 0.88);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(232, 74, 127, 0.25);
+  border-radius: 999px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.35);
+}
 .logo {
-  font-size: 1.4rem; letter-spacing: 0.12em; text-decoration: none;
+  font-size: 1.2rem; letter-spacing: 0.12em; text-decoration: none; flex-shrink: 0;
   background: linear-gradient(90deg, var(--primary,#E84A7F), #FF8AB5);
   -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
 }
-.nav { display: flex; gap: 1.6rem; }
-.nav a { text-decoration: none; color: var(--text-light); font-size: .9rem; font-weight: 500; }
-.nav a:hover { color: var(--primary); }
+.nav--pill { display: flex; gap: 1.2rem; }
+.nav--pill a {
+  text-decoration: none; color: var(--text-light); font-size: 0.88rem; font-weight: 500;
+  padding: 0.35rem 0.5rem; border-radius: 999px; transition: color .2s, background .2s;
+}
+.nav--pill a:hover { color: var(--text); background: rgba(255,255,255,0.06); }
+.header-actions { display: flex; align-items: center; gap: 0.6rem; flex-shrink: 0; }
+.admin-link { color: var(--text-light); text-decoration: none; font-size: 1rem; opacity: 0.7; }
+.admin-link:hover { opacity: 1; color: var(--primary); }
 
 .btn {
   display: inline-flex; align-items: center; justify-content: center;
@@ -31,19 +55,25 @@ h1, h2, h3, .logo, .logo-text { font-family: 'Space Grotesk', system-ui, sans-se
 }
 .btn-primary { background: var(--primary); color: #fff; }
 .btn-primary:hover { background: var(--primary-dark); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(232,74,127,.35); }
-.btn-sm { padding: .5rem 1.15rem; background: transparent; border: 1px solid var(--primary); color: var(--primary); }
+.btn-sm { padding: .45rem 1.1rem; background: transparent; border: 1px solid var(--primary); color: var(--primary); font-size: .85rem; }
 .btn-sm:hover { background: var(--primary); color: #fff; }
+.btn-outline { background: transparent; border: 1px solid rgba(255,255,255,.2); color: var(--text); }
+.btn-outline:hover { border-color: var(--primary); color: var(--primary); }
 
-.hero { position: relative; min-height: 82vh; display: flex; align-items: center; overflow: hidden; }
+.hero {
+  position: relative; min-height: 90vh; display: flex; align-items: center;
+  overflow: hidden; padding-top: 5rem;
+}
 .hero-bg { position: absolute; inset: 0; background-size: cover; background-position: center; z-index: 0; }
-.hero-content { position: relative; z-index: 2; max-width: 640px; padding: 5rem 0; }
-.hero-eyebrow {
+.hero-content { position: relative; z-index: 2; max-width: 640px; padding: 4rem 0; }
+.hero-badge {
   display: inline-block; padding: .3rem .9rem; border-radius: 999px;
   background: rgba(232,74,127,.15); color: var(--primary); font-size: .8rem; font-weight: 600;
   margin-bottom: 1.2rem; border: 1px solid rgba(232,74,127,.3);
 }
 .hero h1 { font-size: clamp(2.6rem, 6.5vw, 4.2rem); line-height: 1.1; margin-bottom: 1.1rem; }
 .hero-sub { font-size: 1.1rem; color: var(--text-light); margin-bottom: 2rem; max-width: 460px; }
+.hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
 
 .section-header { text-align: center; margin-bottom: 3rem; }
 .section-label { display: block; text-transform: uppercase; letter-spacing: .16em; font-size: .75rem; color: var(--primary); margin-bottom: .4rem; }
@@ -105,6 +135,7 @@ h1, h2, h3, .logo, .logo-text { font-family: 'Space Grotesk', system-ui, sans-se
 .footer-copy { font-size: .82rem; color: var(--text-light); opacity: .7; }
 
 @media (max-width: 860px) {
-  .nav { display: none; }
+  .nav--pill { display: none; }
+  .header--float { width: min(100% - 1.5rem, 420px); }
   .about-grid, .contact-grid { grid-template-columns: 1fr; }
 }
