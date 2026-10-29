@@ -21,7 +21,6 @@
   const heroBg = document.getElementById('hero-bg');
   if (cfg.hero.image) { heroBg.style.backgroundImage = `url(${cfg.hero.image})`; heroBg.style.opacity = 1 - (cfg.hero.overlay || 0.3); }
 
-  // Services
   const servicesGrid = document.getElementById('services-grid');
   const formServices = document.getElementById('form-services');
   formServices.innerHTML = '<option value="">Hizmet seçin</option>';
@@ -40,20 +39,17 @@
     formServices.innerHTML += `<option>${esc(s.title)}</option>`;
   });
 
-  // Gallery — marquee 2x duplicate
   const galleryGrid = document.getElementById('gallery-grid');
   const buildItem = g => `<figure class="marquee-item"><img src="${g.url}" alt="${esc(g.alt)}" loading="lazy"></figure>`;
   (cfg.gallery || []).forEach(g => galleryGrid.innerHTML += buildItem(g));
   (cfg.gallery || []).forEach(g => galleryGrid.innerHTML += buildItem(g));
 
-  // About
   document.getElementById('about-title').textContent = cfg.about.title;
   document.getElementById('about-text').textContent = cfg.about.text;
   const feats = document.getElementById('about-features');
   (cfg.about.features || []).forEach(f => feats.innerHTML += `<li>${esc(f)}</li>`);
   if (cfg.about.image) document.getElementById('about-img').src = cfg.about.image;
 
-  // Testimonials — grid cards
   const testiGrid = document.getElementById('testi-grid');
   (cfg.testimonials || []).filter(t => t.approved !== false).forEach(t => {
     const initials = (t.name || '?').trim().split(' ').map(p => p[0]).slice(0,2).join('').toUpperCase();
@@ -70,7 +66,6 @@
       </article>`;
   });
 
-  // Contact
   const b = cfg.business;
   document.getElementById('contact-info').innerHTML = `
     <div class="info-item"><strong>Telefon</strong><a href="tel:${b.phone.replace(/\s/g,'')}">${esc(b.phone)}</a></div>
@@ -90,7 +85,6 @@
     e.target.reset();
   });
 
-  // Star picker
   document.querySelectorAll('.star-picker').forEach(widget => {
     const btns = widget.querySelectorAll('.star-btn');
     const hidden = widget.closest('form').querySelector('input[name="rating"]');
@@ -100,26 +94,14 @@
     btns.forEach((btn, i) => {
       btn.addEventListener('mouseenter', () => paint(i + 1));
       btn.addEventListener('mouseleave', () => paint(current));
-      btn.addEventListener('click', () => {
-        current = i + 1;
-        widget.dataset.rating = current;
-        if (hidden) hidden.value = current;
-        paint(current);
-      });
+      btn.addEventListener('click', () => { current = i + 1; widget.dataset.rating = current; if (hidden) hidden.value = current; paint(current); });
     });
   });
 
-  // Review form
   document.getElementById('review-form').addEventListener('submit', e => {
     e.preventDefault();
     const f = e.target;
-    const review = {
-      id: 't' + Date.now(),
-      name: f.name.value.trim(),
-      text: f.text.value.trim(),
-      rating: Math.min(5, Math.max(1, parseInt(f.rating.value) || 5)),
-      approved: false
-    };
+    const review = { id: 't' + Date.now(), name: f.name.value.trim(), text: f.text.value.trim(), rating: Math.min(5, Math.max(1, parseInt(f.rating.value) || 5)), approved: false };
     if (!review.name || !review.text) return;
     const fresh = Storage.load();
     if (!fresh.testimonials) fresh.testimonials = [];
@@ -133,7 +115,6 @@
     }
   });
 
-  // Animations
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const isMobile = window.matchMedia('(max-width: 860px)').matches;
 
@@ -177,7 +158,6 @@
       document.querySelectorAll('.service-card, .testi-card, .about-img, .about-features').forEach(el => el.classList.add('is-visible'));
       document.getElementById('contact-form')?.classList.add('is-visible');
     }, 2500);
-
     if (!isMobile) {
       const bg = document.getElementById('hero-bg');
       let ticking = false;

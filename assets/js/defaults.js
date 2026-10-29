@@ -13,7 +13,9 @@ window.SITE_DEFAULTS = {
   colors: {
     primary: '#E84A7F', primaryDark: '#C23A68', secondary: '#4A1942',
     accent: '#2D1B2E', text: '#F5F0F2', textLight: '#C9B8C0',
-    bg: '#1A0F1C', white: '#FFFFFF', dark: '#0D080E', card: '#241528'
+    bg: '#1A0F1C', white: '#FFFFFF', dark: '#0D080E', card: '#241528',
+    navbarBg: 'rgba(36,21,40,0.92)',
+    footerBg: '#0D080E', footerText: '#E84A7F'
   },
   hero: {
     title: 'Güzelliğini Yeniden Tanımla',
