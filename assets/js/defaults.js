@@ -42,12 +42,12 @@ window.SITE_DEFAULTS = {
     image: 'https://images.unsplash.com/photo-1633681926035-ec1ac984418a?w=800&q=80'
   },
   services: [
-    { id: 's1', icon: '⚡', title: 'Lazer Epilasyon', desc: 'Alexandrite & Diode teknolojisi ile kalıcı sonuçlar.', price: '1.200 ₺’den', duration: '30-60 dk', visible: true },
-    { id: 's2', icon: '🌟', title: 'Cilt Gençleştirme', desc: 'Hydrafacial, mezoterapi ve medikal cilt bakımları.', price: '1.800 ₺’den', duration: '60 dk', visible: true },
-    { id: 's3', icon: '💋', title: 'Dudak & Kaş Tasarımı', desc: 'Kalıcı makyaj ve microblading uygulamaları.', price: '2.800 ₺’den', duration: '2 saat', visible: true },
-    { id: 's4', icon: '💅', title: 'Nail Art & Protez', desc: 'Trend renkler, jel ve özel tasarımlar.', price: '450 ₺’den', duration: '45 dk', visible: true },
-    { id: 's5', icon: '💇', title: 'Saç & Renk', desc: 'Balayage, ombre, keratin ve profesyonel kesimler.', price: '750 ₺’den', duration: '90 dk', visible: true },
-    { id: 's6', icon: '🧘', title: 'Spa & Masaj', desc: 'Rahatlatıcı masajlar ve aromaterapi seansları.', price: '900 ₺’den', duration: '50 dk', visible: true }
+    { id: 's1', icon: '01', title: 'Lazer Epilasyon', desc: 'Alexandrite & Diode teknolojisi ile kalıcı sonuçlar.', price: '1.200 ₺’den', duration: '30-60 dk', visible: true },
+    { id: 's2', icon: '02', title: 'Cilt Gençleştirme', desc: 'Hydrafacial, mezoterapi ve medikal cilt bakımları.', price: '1.800 ₺’den', duration: '60 dk', visible: true },
+    { id: 's3', icon: '03', title: 'Dudak & Kaş Tasarımı', desc: 'Kalıcı makyaj ve microblading uygulamaları.', price: '2.800 ₺’den', duration: '2 saat', visible: true },
+    { id: 's4', icon: '04', title: 'Nail Art & Protez', desc: 'Trend renkler, jel ve özel tasarımlar.', price: '450 ₺’den', duration: '45 dk', visible: true },
+    { id: 's5', icon: '03', title: 'Saç & Renk', desc: 'Balayage, ombre, keratin ve profesyonel kesimler.', price: '750 ₺’den', duration: '90 dk', visible: true },
+    { id: 's6', icon: '06', title: 'Spa & Masaj', desc: 'Rahatlatıcı masajlar ve aromaterapi seansları.', price: '900 ₺’den', duration: '50 dk', visible: true }
   ],
   gallery: [
     { id: 'g1', url: 'https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?w=600&q=80', alt: 'Studio' },
