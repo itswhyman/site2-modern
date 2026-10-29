@@ -29,11 +29,12 @@
   </div>
 
   <main>
+    <!-- HERO -->
     <section class="hero" id="hero">
       <div class="hero-bg" id="hero-bg"></div>
       <div class="container hero-content">
         <div class="hero-badge">Yeni nesil güzellik stüdyosu</div>
-        <h1 id="hero-title" data-split="words">Güzelliğini Yeniden Tanımla</h1>
+        <h1 id="hero-title">Güzelliğini Yeniden Tanımla</h1>
         <p class="hero-sub" id="hero-sub"></p>
         <div class="hero-actions">
           <a href="#iletisim" class="btn btn-primary" id="hero-cta" data-magnetic>Hemen Randevu</a>
@@ -42,59 +43,76 @@
       </div>
     </section>
 
+    <!-- HİZMETLER: Bento Grid -->
     <section id="hizmetler" class="services">
       <div class="container">
         <div class="section-header">
-          <span class="section-label" data-pop>Hizmetler</span>
-          <h2 data-pop>İhtiyacına göre seç</h2>
+          <span class="section-label">Hizmetler</span>
+          <h2>İhtiyacına göre seç</h2>
         </div>
-        <div class="services-grid" id="services-grid"></div>
+        <div class="bento-services" id="services-grid"></div>
       </div>
     </section>
 
+    <!-- GALERİ: Sonsuz Marquee -->
     <section id="galeri" class="gallery">
       <div class="container">
         <div class="section-header">
-          <span class="section-label" data-pop>Galeri</span>
-          <h2 data-pop>Atmosfer</h2>
+          <span class="section-label">Galeri</span>
+          <h2>Atmosfer</h2>
         </div>
-        <div class="gallery-grid" id="gallery-grid"></div>
+      </div>
+      <div class="marquee-wrap">
+        <div class="marquee" id="gallery-grid"></div>
       </div>
     </section>
 
+    <!-- HAKKIMIZDA: Sticky Görsel -->
     <section id="hakkimizda" class="about">
-      <div class="container about-grid">
-        <div class="about-text">
-          <span class="section-label" data-pop>Hakkımızda</span>
-          <h2 id="about-title" data-pop></h2>
-          <p id="about-text" data-pop></p>
-          <ul class="about-features" id="about-features" data-pop></ul>
-        </div>
+      <div class="container about-sticky">
         <div class="about-visual">
-          <img id="about-img" src="" alt="Studio" class="about-img" data-scale-in>
+          <img id="about-img" src="" alt="Studio" class="about-img">
+        </div>
+        <div class="about-text">
+          <span class="section-label">Hakkımızda</span>
+          <h2 id="about-title"></h2>
+          <p id="about-text"></p>
+          <ul class="about-features" id="about-features"></ul>
         </div>
       </div>
     </section>
 
+    <!-- YORUMLAR: Avatar Kartları + Form -->
     <section id="yorumlar" class="testimonials">
       <div class="container">
         <div class="section-header">
-          <span class="section-label" data-pop>Yorumlar</span>
-          <h2 data-pop>Onlar ne diyor?</h2>
+          <span class="section-label">Yorumlar</span>
+          <h2>Onlar ne diyor?</h2>
         </div>
-        <div class="testi-grid" id="testi-grid"></div>
+        <div class="avatar-stack" id="testi-grid"></div>
+
+        <div class="review-panel">
+          <h3>Deneyimini Paylaş</h3>
+          <form class="review-form" id="review-form">
+            <input type="text" name="name" placeholder="Adın" required maxlength="40">
+            <input type="number" name="rating" min="1" max="5" value="5" placeholder="Puan (1-5)" required>
+            <textarea name="text" placeholder="Yorumun..." rows="3" required maxlength="300"></textarea>
+            <button type="submit" class="btn btn-primary" data-magnetic>Gönder</button>
+          </form>
+        </div>
       </div>
     </section>
 
+    <!-- İLETİŞİM: Panel -->
     <section id="iletisim" class="contact">
       <div class="container">
-        <div class="section-header">
-          <span class="section-label" data-pop>İletişim</span>
-          <h2 data-pop>Randevu & Danışmanlık</h2>
-        </div>
-        <div class="contact-grid">
-          <div class="contact-info" id="contact-info" data-pop></div>
-          <form class="contact-form" id="contact-form" data-pop>
+        <div class="contact-panel">
+          <div class="contact-side">
+            <span class="section-label">İletişim</span>
+            <h2>Randevu & Danışmanlık</h2>
+            <div class="contact-info" id="contact-info"></div>
+          </div>
+          <form class="contact-form" id="contact-form">
             <input type="text" name="name" placeholder="Ad Soyad" required>
             <input type="tel" name="phone" placeholder="Telefon" required>
             <select name="service" id="form-services"></select>
@@ -120,6 +138,5 @@
   <script src="assets/js/defaults.js"></script>
   <script src="assets/js/storage.js"></script>
   <script src="assets/js/public.js"></script>
-  <script src="assets/js/animations.js"></script>
 </body>
 </html>
